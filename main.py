@@ -75,6 +75,7 @@ def runOllamaInference(message, model='llama3', smallmodel='tinyllama', host="ht
     if content.startswith('{') and content.endswith('}'):
         query = content[1:-1]
         summary = getTopSummary(query, 3, model=smallmodel, host=host)
+        print(summary)
         response2 = client.chat(
             model=model, 
             messages=[{'role': 'user', 'content': summary}, {'role': 'user', 'content': message}]
@@ -83,4 +84,4 @@ def runOllamaInference(message, model='llama3', smallmodel='tinyllama', host="ht
     else:
         return content
 
-print(runOllamaInference("Who is the current US president?", model="llama3", smallmodel="tinyllama", host="http://192.168.1.221:11434"))
+print(runOllamaInference("What is the date today?", model="llama3", smallmodel="tinyllama", host="http://192.168.1.221:11434"))
